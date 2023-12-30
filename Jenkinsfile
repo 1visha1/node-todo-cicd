@@ -22,7 +22,7 @@ pipeline {
 		stage("push image"){
 			steps{
 				withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"DP",usernameVariable:"DU" )]){
-					sh "docker tag node-app:latest ${env.DU}/node-app-test-new:latest"
+					sh "docker tag node-app-test-new:latest ${env.DU}/node-app-test-new:latest"
 					sh "docker login -u ${env.DU} -p ${env.DP}"
 					sh "docker push ${env.DU}/node-app-test-new:latest"
 					echo "image uploading on docker hub"
